@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'pokemon#index'
   get '/pokemon/about', to: 'pokemon#about'
+  get '/pokemon/index', to: 'pokemon#index'
 
   resource :pokemon do
     member do
