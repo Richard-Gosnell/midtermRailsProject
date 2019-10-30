@@ -3,8 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Bootstrap gemfile (as stated in documentation)
+# Bootstrap gem (as stated in documentation)
 gem 'bootstrap', '~> 4.3.1'
+# Paginator gem
+gem 'kaminari'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
