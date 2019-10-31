@@ -2,9 +2,9 @@
 
 class CreateTypes < ActiveRecord::Migration[6.0]
   def change
-    create_table :types do |t|
-      t.string :type
-      t.index :type
+    create_table :ptypes do |t|
+      t.string :ptype
+      t.index :ptype
 
       t.timestamps
     end

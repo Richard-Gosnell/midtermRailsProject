@@ -20,13 +20,18 @@ ActiveRecord::Schema.define(version: 2019_10_24_161652) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
-    t.integer "id_id"
-    t.integer "type_id"
+    t.integer "ptype_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["id_id"], name: "index_pokemons_on_id_id"
     t.index ["name"], name: "index_pokemons_on_name"
-    t.index ["type_id"], name: "index_pokemons_on_type_id"
+    t.index ["ptype_id"], name: "index_pokemons_on_ptype_id"
+  end
+
+  create_table "ptypes", force: :cascade do |t|
+    t.string "ptype"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ptype"], name: "index_ptypes_on_ptype"
   end
 
   create_table "stats", force: :cascade do |t|
@@ -42,14 +47,6 @@ ActiveRecord::Schema.define(version: 2019_10_24_161652) do
     t.index ["name_id"], name: "index_stats_on_name_id"
   end
 
-  create_table "types", force: :cascade do |t|
-    t.string "type"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["type"], name: "index_types_on_type"
-  end
-
-  add_foreign_key "pokemons", "ids"
-  add_foreign_key "pokemons", "types"
+  add_foreign_key "pokemons", "ptypes"
   add_foreign_key "stats", "names"
 end

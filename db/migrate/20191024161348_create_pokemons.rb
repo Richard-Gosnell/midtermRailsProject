@@ -5,8 +5,7 @@ class CreatePokemons < ActiveRecord::Migration[6.0]
     create_table :pokemons do |t|
       t.string :name
       t.index :name
-      t.references :id, foreign_key: true
-      t.references :type, foreign_key: true
+      t.references :ptype, foreign_key: true
 
       t.timestamps
     end

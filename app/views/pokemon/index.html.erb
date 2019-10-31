@@ -16,9 +16,11 @@
   <p class="card-text">Search or scroll down to review all pokemon.</p>
   <div class="container">
     <div class="row">
-      <div class="col">
-        1 of 4
-      </div>
+      <% @pokemon.each do |pokemon| %>
+        <div class="col">
+          <p>One</p>
+        </div>
+      <% end %>
       <div class="col">
         2 of 4
       </div>
