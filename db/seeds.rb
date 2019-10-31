@@ -9,22 +9,39 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Pokemon.destroy_all
+Type.destroy_all
 
 require 'net/http'
+require 'open-uri'
 require 'json'
 require 'pp'
 
-url = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json'
-responce = Net::HTTP.get(url)
-request.content_type = 'application/json'
+url_names = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json'
+url_types = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/types.json'
+name_list = open(url_names).read
+type_list = open(url_types).read
 
-pokemon_names = JSON.parse(responce)
+pokemon_names = JSON.parse(name_list)
+type_names = JSON.parse(type_list)
+
+types_name = type_names.map { |type| type['english'] }
+# Will extract name: DO NOT CHANGE LINE BELOW!
 english_names = pokemon_names.map { |name| name['name']['english'] }
 
-pokemon_names.each do
-  pokemon.name.create(
-    name: english_names
+# Working
+types_name.each do |_types_name|
+  t = Type.create(
+    type: types_name
   )
+  puts t.errors.messages
 end
 
+english_names.each do |_english_names|
+  p = Pokemon.create(
+    name: english_names
+  )
+  puts p.errors.messages
+end
+
+puts "Created #{Type.count} Types"
 puts "Created #{Pokemon.count} Pokemon"
